@@ -17,10 +17,6 @@ export default function Home() {
     setPhoneDetails(phone);
   };
 
-  useEffect(() => {
-    getPhoneData();
-  }, []);
-
   const minus = () => {
     setNumber(number - 1);
   };
@@ -28,7 +24,10 @@ export default function Home() {
     setNumber(number + 1);
   };
 
-  const addToBasket = () => {};
+  useEffect(() => {
+    getPhoneData();
+  }, []);
+
   return (
     <div className="bg-[#f2f4fa] w-full min-h-screen flex flex-col pl-10">
       <Link href="/phone" className="text-blue-400 pt-10 pb-5">
@@ -88,18 +87,17 @@ export default function Home() {
                 </button>
               </div>
               <p className="text-black text-[18px] flex pt-1">
-                Нийт: $ {number * phoneDetails.price}{" "}
+                Нийт: ${" "}
+                {phoneDetails !== null && number * phoneDetails.price}{" "}
               </p>
             </div>
 
-            <button
-              onClick={addToBasket}
-              className="bg-[#ff6801] rounded-lg w-[450px] h-[50px] flex items-center justify-center text-white mt-4"
-            >
+            <button className="bg-[#ff6801] rounded-lg w-[450px] h-[50px] flex items-center justify-center text-white mt-4">
               Сагсанд хийх
             </button>
             <p className="text-green-400 w-full flex pl-6 pt-5">
-              ✅ {number} ширхэг {phoneDetails.title} сагсанд нэмэгдлээ.
+              ✅ {number} ширхэг {phoneDetails !== null && phoneDetails.title}{" "}
+              сагсанд нэмэгдлээ
             </p>
           </div>
         </div>
